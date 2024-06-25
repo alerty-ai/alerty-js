@@ -1,0 +1,24 @@
+{
+  "name": "alerty-sdk",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@alerty/eslint-config": "*",
+    "@alerty/typescript-config": "*",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "yarn@4.2.2",
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ]
+}
