@@ -1,6 +1,9 @@
 name: Release
 on:
   release:
+  push:
+    branches:
+      - chandler/configure-cicd
 
 jobs:
   release:
@@ -12,9 +15,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: ".tool-versions"
-          cache: "yarn"
       - name: Install
-        run: yarn install
+        run: yarn install --immutable
       - name: build
         run: yarn build
       - run: cd packages/nextjs && npm publish
