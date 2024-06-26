@@ -33,7 +33,7 @@ To start using Alerty SDK, initialize it in your project:
 import * as Alerty from "@alerty/node";
 
 Alerty.configure({
-  dsn: process.env.ALERTY_DSN,
+  dsn: "__DSN__",
 });
 ```
 

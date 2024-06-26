@@ -28,7 +28,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 Alerty.configure({
-  dsn: process.env.ALERTY_DSN,
+  dsn: "__DSN__",
 });
 
 ReactDOM.render(<App />, document.getElementById("root"));

@@ -30,7 +30,7 @@ import * as Alerty from "@alerty/nextjs";
 import App from "next/app";
 
 Alerty.configure({
-  dsn: process.env.ALERTY_DSN,
+  dsn: "__DSN__",
 });
 
 class MyApp extends App {

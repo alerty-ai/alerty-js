@@ -5,6 +5,30 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@alerty/core@npm:*, @alerty/core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@alerty/core@workspace:packages/core"
+  dependencies:
+    "@alerty/eslint-config": "npm:*"
+    "@alerty/typescript-config": "npm:*"
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/exporter-trace-otlp-http": "npm:^0.52.0"
+    "@opentelemetry/instrumentation": "npm:^0.52.0"
+    "@opentelemetry/resources": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-base": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-node": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-web": "npm:^1.25.0"
+    "@turbo/gen": "npm:^1.12.4"
+    "@types/eslint": "npm:^8.56.5"
+    "@types/node": "npm:^20.11.24"
+    "@types/react": "npm:^18.2.61"
+    "@types/react-dom": "npm:^18.2.19"
+    eslint: "npm:^8.57.0"
+    react: "npm:^18.2.0"
+    typescript: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@alerty/eslint-config@npm:*, @alerty/eslint-config@workspace:utils/eslint-config":
   version: 0.0.0-use.local
   resolution: "@alerty/eslint-config@workspace:utils/eslint-config"
@@ -12,6 +36,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^7.1.0"
     "@typescript-eslint/parser": "npm:^7.1.0"
     "@vercel/style-guide": "npm:^5.2.0"
+    eslint: "npm:^8.56.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-config-turbo: "npm:^2.0.0"
     eslint-plugin-only-warn: "npm:^1.1.0"
@@ -23,15 +48,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alerty/nextjs@workspace:packages/nextjs"
   dependencies:
+    "@alerty/core": "npm:*"
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
-    "@opentelemetry/api": "npm:^1.9.0"
-    "@opentelemetry/exporter-trace-otlp-http": "npm:^0.52.0"
-    "@opentelemetry/instrumentation": "npm:^0.52.0"
-    "@opentelemetry/resources": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-base": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-node": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-web": "npm:^1.25.0"
     "@turbo/gen": "npm:^1.12.4"
     "@types/eslint": "npm:^8.56.5"
     "@types/node": "npm:^20.11.24"
@@ -47,15 +66,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alerty/node@workspace:packages/node"
   dependencies:
+    "@alerty/core": "npm:*"
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
-    "@opentelemetry/api": "npm:^1.9.0"
-    "@opentelemetry/exporter-trace-otlp-http": "npm:^0.52.0"
-    "@opentelemetry/instrumentation": "npm:^0.52.0"
-    "@opentelemetry/resources": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-base": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-node": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-web": "npm:^1.25.0"
     "@turbo/gen": "npm:^1.12.4"
     "@types/eslint": "npm:^8.56.5"
     "@types/node": "npm:^20.11.24"
@@ -71,15 +84,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alerty/react@workspace:packages/react"
   dependencies:
+    "@alerty/core": "npm:*"
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
-    "@opentelemetry/api": "npm:^1.9.0"
-    "@opentelemetry/exporter-trace-otlp-http": "npm:^0.52.0"
-    "@opentelemetry/instrumentation": "npm:^0.52.0"
-    "@opentelemetry/resources": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-base": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-node": "npm:^1.25.0"
-    "@opentelemetry/sdk-trace-web": "npm:^1.25.0"
     "@turbo/gen": "npm:^1.12.4"
     "@types/eslint": "npm:^8.56.5"
     "@types/node": "npm:^20.11.24"
@@ -4198,7 +4205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8, eslint@npm:^8.57.0":
+"eslint@npm:^8, eslint@npm:^8.56.0, eslint@npm:^8.57.0":
   version: 8.57.0
   resolution: "eslint@npm:8.57.0"
   dependencies:
