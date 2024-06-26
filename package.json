@@ -1,6 +1,6 @@
 {
   "name": "alerty-js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -8,7 +8,7 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "publish": "yarn workspaces foreach -W --from \"packages/*\" npm publish",
-    "version:all": "yarn version $@ && yarn workspaces foreach -p -W --from \"packages/*\" version $@ && git add . && git commit -m \"v$@\" && git tag v$@"
+    "version:all": "yarn version $@ && yarn workspaces foreach -W --from \"packages/*\" version $@ && git add . && git commit -m \"v$@\" && git tag v$@"
   },
   "devDependencies": {
     "@alerty/eslint-config": "*",
