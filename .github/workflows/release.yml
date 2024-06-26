@@ -21,6 +21,6 @@ jobs:
         run: yarn install --immutable
       - name: build
         run: yarn build
-      - run: cd packages/nextjs && npm publish
+      - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
