@@ -15,12 +15,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: ".tool-versions"
+          cache: "yarn"
       - name: Enable corepack
         run: corepack enable
       - name: Install
         run: yarn install --immutable
       - name: build
         run: yarn build
-      - run: cd packages/nextjs && npm publish
+      - run: cd packages/nextjs && npm login --yes && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
