@@ -1,6 +1,6 @@
 # Alerty SDK
 
-[![NPM Version](https://img.shields.io/npm/v/@alerty/nextjs.svg)](https://www.npmjs.com/package/@alerty/nextjs) [![License](https://img.shields.io/npm/l/@alerty/nextjs.svg)](https://github.com/zeet-co/alerty-sdk/blob/main/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/@alerty/nextjs.svg)](https://www.npmjs.com/package/@alerty/nextjs)
 
 Alerty SDK is a powerful monitoring tool designed, built, and priced for the needs of developers and founders. It helps you monitor your applications, track errors, and ensure your software runs smoothly.
 
