@@ -1,11 +1,17 @@
 {
-  "name": "@alerty/sdk",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@alerty/node",
+  "version": "0.0.2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "scripts": {
+    "build": "tsc",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
   },
@@ -29,5 +35,8 @@
     "@opentelemetry/sdk-trace-base": "^1.25.0",
     "@opentelemetry/sdk-trace-node": "^1.25.0",
     "@opentelemetry/sdk-trace-web": "^1.25.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
