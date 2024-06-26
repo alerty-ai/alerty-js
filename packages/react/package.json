@@ -1,6 +1,6 @@
 {
-  "name": "@alerty/nextjs",
-  "version": "0.0.0",
+  "name": "@alerty/react",
+  "version": "0.0.1",
   "private": true,
   "exports": {
     ".": "./src/index.ts"

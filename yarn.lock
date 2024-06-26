@@ -19,9 +19,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@alerty/nextjs@workspace:^, @alerty/nextjs@workspace:packages/react":
+"@alerty/nextjs@workspace:^, @alerty/nextjs@workspace:packages/nextjs":
   version: 0.0.0-use.local
-  resolution: "@alerty/nextjs@workspace:packages/react"
+  resolution: "@alerty/nextjs@workspace:packages/nextjs"
   dependencies:
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
@@ -67,9 +67,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@alerty/react@workspace:^, @alerty/react@workspace:packages/nextjs":
+"@alerty/react@workspace:^, @alerty/react@workspace:packages/react":
   version: 0.0.0-use.local
-  resolution: "@alerty/react@workspace:packages/nextjs"
+  resolution: "@alerty/react@workspace:packages/react"
   dependencies:
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
