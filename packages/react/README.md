@@ -1,4 +1,4 @@
-# Alerty JavaScript SDK
+# Alerty React SDK
 
 [![NPM Version](https://img.shields.io/npm/v/@alerty/react.svg)](https://www.npmjs.com/package/@alerty/react)
 
@@ -11,30 +11,27 @@ Alerty SDK is a powerful monitoring tool designed, built, and priced for the nee
 - **Customizable Alerts:** Set up alerts to notify you when something goes wrong.
 - **Lightweight and Fast:** Designed to be efficient with minimal overhead.
 
-## Supported Platforms
-
-For each major JavaScript platform, there is a specific high-level SDK that provides all the tools you need in a single package. Please refer to the README and instructions of those SDKs for more detailed information:
-
-- [`@alerty/node`](https://github.com/alerty-ai/alerty-js/tree/main/packages/node): SDK for Node
-- [`@alerty/react`](https://github.com/alerty-ai/alerty-js/tree/main/packages/react): SDK for React
-- [`@alerty/nextjs`](https://github.com/alerty-ai/alerty-js/tree/main/packages/nextjs): SDK for Next.js
-
 ## Usage
 
-You can install the Alerty SDK via npm (see specific instructions for each platform above):
+You can install the Alerty SDK via npm:
 
 ```sh
-npm install @alerty/node
+npm install @alerty/react
 ```
 
-To start using Alerty SDK, initialize it in your project:
+In a React application, initialize Alerty SDK in your main entry file, typically `index.js` or `App.js`:
 
 ```javascript
-import * as Alerty from "@alerty/node";
+import * as Alerty from "@alerty/react";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
 Alerty.configure({
   dsn: process.env.ALERTY_DSN,
 });
+
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 Data should be flowing now!
