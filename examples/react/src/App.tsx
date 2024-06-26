@@ -3,12 +3,10 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import { init } from "@alerty/sdk";
+import * as Alerty from "@alerty/react";
 
-init({
-  serviceName: "alerty-example-react",
-  serviceVersion: "dev",
-  deploymentEnvironment: "local",
+Alerty.configure({
+  dsn: process.env.ALERTY_DSN!,
 });
 
 function App() {

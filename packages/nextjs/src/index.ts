@@ -16,9 +16,10 @@ import {
 } from "@opentelemetry/semantic-conventions";
 
 interface AlertyServiceConfig {
-  serviceName: string;
-  serviceVersion: string;
-  deploymentEnvironment: string;
+  dsn: string;
+  serviceName?: string;
+  serviceVersion?: string;
+  deploymentEnvironment?: string;
 }
 
 interface AlertyConfig {
@@ -30,6 +31,7 @@ var defaultAlertyConfig: AlertyConfig = {
 };
 
 let alertyService: AlertyServiceConfig = {
+  dsn: "",
   serviceName: "",
   serviceVersion: "",
   deploymentEnvironment: "",
@@ -65,7 +67,7 @@ if (
 
 // Frontend (Web) Error Handling
 if (typeof window !== "undefined") {
-  window.onerror = (message, source, lineno, colno, error) => {
+  window.onerror = (message, _, __, ___, error) => {
     captureError(error || message.toString());
     return false; // Prevents the default browser error handling.
   };
@@ -75,7 +77,7 @@ if (typeof window !== "undefined") {
   };
 }
 
-const setupNodeTracer = (endpoint: string) => {
+const setupNodeTracer = (endpoint: string, orgId: string) => {
   const provider = new NodeTracerProvider({
     resource: new Resource({
       [SEMRESATTRS_SERVICE_NAME]: alertyService.serviceName,
@@ -86,7 +88,9 @@ const setupNodeTracer = (endpoint: string) => {
 
   const exporter = new OTLPTraceExporter({
     url: new URL("/v1/traces", endpoint).href,
-    headers: {},
+    headers: {
+      "X-Alerty-OrganizationId": orgId,
+    },
   });
 
   provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
@@ -101,7 +105,7 @@ const setupNodeTracer = (endpoint: string) => {
   return provider.getTracer("alerty-node-tracer");
 };
 
-const setupWebTracer = (endpoint: string) => {
+const setupWebTracer = (endpoint: string, orgId: string) => {
   const provider = new WebTracerProvider({
     resource: new Resource({
       [SEMRESATTRS_SERVICE_NAME]: alertyService.serviceName,
@@ -112,7 +116,9 @@ const setupWebTracer = (endpoint: string) => {
 
   const exporter = new OTLPTraceExporter({
     url: new URL("/v1/traces", endpoint).href,
-    headers: {},
+    headers: {
+      "X-Alerty-OrganizationId": orgId,
+    },
   });
 
   provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
@@ -127,22 +133,43 @@ const setupWebTracer = (endpoint: string) => {
   return provider.getTracer("alerty-web-tracer");
 };
 
-const init = (config: AlertyServiceConfig, endpoint?: string) => {
+const parseDsn = (dsn: string) => {
+  const dsnPattern = /^(https:\/\/)([^@]+)@([^/]+)\/([^/]+)$/;
+  const match = dsn.match(dsnPattern);
+
+  if (!match) {
+      throw new Error('Invalid DSN format');
+  }
+
+  const orgId = match[2];
+  const ingestHost = `https://${match[3]}`;
+  const resourceId = match[4];
+
+  const formattedOrgId = `org_${orgId?.toUpperCase()}`;
+
+  return {
+      orgId: formattedOrgId,
+      ingestHost,
+      resourceId
+  };
+}
+
+const configure = (config: AlertyServiceConfig) => {
   alertyService = config;
 
+  const { orgId, ingestHost } = parseDsn(config.dsn);
+
   if (typeof window !== "undefined") {
-    // Frontend environment (React, Next.js in client-side)
-    return setupWebTracer(endpoint || defaultAlertyConfig.endpoint);
+    return setupWebTracer(ingestHost || defaultAlertyConfig.endpoint, orgId);
   } else if (
     typeof process !== "undefined" &&
     process.release &&
     process.release.name === "node"
   ) {
-    // Backend environment (Node.js, Next.js in server-side)
-    return setupNodeTracer(endpoint || defaultAlertyConfig.endpoint);
+    return setupNodeTracer(ingestHost || defaultAlertyConfig.endpoint, orgId);
   } else {
     throw new Error("Unsupported environment for Alerty initialization");
   }
 };
 
-export { captureError, init };
+export { captureError, configure };

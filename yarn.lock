@@ -19,9 +19,57 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@alerty/sdk@workspace:^, @alerty/sdk@workspace:packages/sdk":
+"@alerty/nextjs@workspace:^, @alerty/nextjs@workspace:packages/react":
   version: 0.0.0-use.local
-  resolution: "@alerty/sdk@workspace:packages/sdk"
+  resolution: "@alerty/nextjs@workspace:packages/react"
+  dependencies:
+    "@alerty/eslint-config": "npm:*"
+    "@alerty/typescript-config": "npm:*"
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/exporter-trace-otlp-http": "npm:^0.52.0"
+    "@opentelemetry/instrumentation": "npm:^0.52.0"
+    "@opentelemetry/resources": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-base": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-node": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-web": "npm:^1.25.0"
+    "@turbo/gen": "npm:^1.12.4"
+    "@types/eslint": "npm:^8.56.5"
+    "@types/node": "npm:^20.11.24"
+    "@types/react": "npm:^18.2.61"
+    "@types/react-dom": "npm:^18.2.19"
+    eslint: "npm:^8.57.0"
+    react: "npm:^18.2.0"
+    typescript: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
+"@alerty/node@workspace:^, @alerty/node@workspace:packages/node":
+  version: 0.0.0-use.local
+  resolution: "@alerty/node@workspace:packages/node"
+  dependencies:
+    "@alerty/eslint-config": "npm:*"
+    "@alerty/typescript-config": "npm:*"
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/exporter-trace-otlp-http": "npm:^0.52.0"
+    "@opentelemetry/instrumentation": "npm:^0.52.0"
+    "@opentelemetry/resources": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-base": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-node": "npm:^1.25.0"
+    "@opentelemetry/sdk-trace-web": "npm:^1.25.0"
+    "@turbo/gen": "npm:^1.12.4"
+    "@types/eslint": "npm:^8.56.5"
+    "@types/node": "npm:^20.11.24"
+    "@types/react": "npm:^18.2.61"
+    "@types/react-dom": "npm:^18.2.19"
+    eslint: "npm:^8.57.0"
+    react: "npm:^18.2.0"
+    typescript: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
+"@alerty/react@workspace:^, @alerty/react@workspace:packages/nextjs":
+  version: 0.0.0-use.local
+  resolution: "@alerty/react@workspace:packages/nextjs"
   dependencies:
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
@@ -2188,7 +2236,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alerty-example-nextjs@workspace:examples/nextjs"
   dependencies:
-    "@alerty/sdk": "workspace:^"
+    "@alerty/nextjs": "workspace:^"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
@@ -2207,7 +2255,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alerty-example-node@workspace:examples/node"
   dependencies:
-    "@alerty/sdk": "workspace:^"
+    "@alerty/node": "workspace:^"
     "@types/cookie-parser": "npm:^1.4.7"
     "@types/express": "npm:^4.17.21"
     "@types/find": "npm:^0.2.4"
@@ -2250,7 +2298,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alerty-example-react@workspace:examples/react"
   dependencies:
-    "@alerty/sdk": "workspace:^"
+    "@alerty/react": "workspace:^"
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
@@ -2266,9 +2314,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"alerty-sdk@workspace:.":
+"alerty-js@workspace:.":
   version: 0.0.0-use.local
-  resolution: "alerty-sdk@workspace:."
+  resolution: "alerty-js@workspace:."
   dependencies:
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"

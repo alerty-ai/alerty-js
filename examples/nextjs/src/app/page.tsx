@@ -1,11 +1,9 @@
 import Image from "next/image";
 
-import { init } from "@alerty/sdk";
+import * as Alerty from "@alerty/nextjs";
 
-init({
-  serviceName: "alerty-example-nextjs",
-  serviceVersion: "dev",
-  deploymentEnvironment: "local",
+Alerty.configure({
+  dsn: "https://example@test.ingest.alerty.ai/fa25c056-d8a5-41ab-9de3-06048ef0299c",
 });
 
 export default function Home() {

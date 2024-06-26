@@ -1,6 +1,6 @@
 # Alerty SDK
 
-[![NPM Version](https://img.shields.io/npm/v/@alerty/sdk.svg)](https://www.npmjs.com/package/@alerty/sdk) [![License](https://img.shields.io/npm/l/@alerty/sdk.svg)](https://github.com/zeet-co/alerty-sdk/blob/main/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/@alerty/nextjs.svg)](https://www.npmjs.com/package/@alerty/nextjs) [![License](https://img.shields.io/npm/l/@alerty/nextjs.svg)](https://github.com/zeet-co/alerty-sdk/blob/main/LICENSE)
 
 Alerty SDK is a powerful monitoring tool designed, built, and priced for the needs of developers and founders. It helps you monitor your applications, track errors, and ensure your software runs smoothly.
 
@@ -27,10 +27,10 @@ You can install the Alerty SDK via npm or yarn:
 
 ```sh
 # Using npm
-npm install @alerty/sdk
+npm install @alerty/nextjs
 
 # Using yarn
-yarn add @alerty/sdk
+yarn add @alerty/nextjs
 ```
 
 ## Usage
@@ -38,12 +38,10 @@ yarn add @alerty/sdk
 To start using Alerty SDK, initialize it in your project:
 
 ```javascript
-import { init } from "@alerty/sdk";
+import * as Alerty from "@alerty/nextjs";
 
-init({
-  serviceName: "alerty-example-react",
-  serviceVersion: "dev",
-  deploymentEnvironment: "local",
+Alerty.configure({
+  dsn: process.env.ALERTY_DSN,
 });
 ```
 
@@ -62,13 +60,11 @@ The `init` function accepts the following configuration options:
 In a Next.js application, you can initialize Alerty SDK in `pages/_app.js`:
 
 ```javascript
-import { init } from "@alerty/sdk";
-import App from 'next/app';
+import * as Alerty from "@alerty/nextjs";
+import App from "next/app";
 
-init({
-  serviceName: "alerty-example-nextjs",
-  serviceVersion: "dev",
-  deploymentEnvironment: "local",
+Alerty.configure({
+  dsn: process.env.ALERTY_DSN,
 });
 
 class MyApp extends App {
@@ -83,12 +79,10 @@ export default MyApp;
 In a Node.js application, initialize Alerty SDK at the entry point of your application:
 
 ```javascript
-const { init } = require("@alerty/sdk");
+const Alerty = require("@alerty/node");
 
-init({
-  serviceName: "alerty-example-node",
-  serviceVersion: "dev",
-  deploymentEnvironment: "local",
+Alerty.configure({
+  dsn: process.env.ALERTY_DSN,
 });
 
 // Rest of your application code
@@ -99,18 +93,16 @@ init({
 In a React application, initialize Alerty SDK in your main entry file, typically `index.js` or `App.js`:
 
 ```javascript
-import { init } from "@alerty/sdk";
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import * as Alerty from "@alerty/react";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-init({
-  serviceName: "alerty-example-react",
-  serviceVersion: "dev",
-  deploymentEnvironment: "local",
+Alerty.configure({
+  dsn: process.env.ALERTY_DSN,
 });
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 ## Contributing
