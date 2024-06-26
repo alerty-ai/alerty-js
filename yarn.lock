@@ -5,9 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@alerty/eslint-config@npm:*, @alerty/eslint-config@workspace:packages/eslint-config":
+"@alerty/eslint-config@npm:*, @alerty/eslint-config@workspace:utils/eslint-config":
   version: 0.0.0-use.local
-  resolution: "@alerty/eslint-config@workspace:packages/eslint-config"
+  resolution: "@alerty/eslint-config@workspace:utils/eslint-config"
   dependencies:
     "@typescript-eslint/eslint-plugin": "npm:^7.1.0"
     "@typescript-eslint/parser": "npm:^7.1.0"
@@ -91,9 +91,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@alerty/typescript-config@npm:*, @alerty/typescript-config@workspace:packages/typescript-config":
+"@alerty/typescript-config@npm:*, @alerty/typescript-config@workspace:utils/typescript-config":
   version: 0.0.0-use.local
-  resolution: "@alerty/typescript-config@workspace:packages/typescript-config"
+  resolution: "@alerty/typescript-config@workspace:utils/typescript-config"
   languageName: unknown
   linkType: soft
 

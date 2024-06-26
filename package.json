@@ -1,11 +1,14 @@
 {
   "name": "alerty-js",
+  "version": "0.0.6",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "publish": "yarn workspaces foreach -W --from \"packages/*\" npm publish",
+    "version:all": "yarn version $@ && yarn workspaces foreach -W --from \"packages/*\" version $@ && git add . && git commit -m \"v$@\" && git tag v$@"
   },
   "devDependencies": {
     "@alerty/eslint-config": "*",
@@ -19,6 +22,7 @@
   "packageManager": "yarn@4.3.1",
   "workspaces": [
     "examples/*",
-    "packages/*"
+    "packages/*",
+    "utils/*"
   ]
 }
