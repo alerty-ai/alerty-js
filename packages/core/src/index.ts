@@ -22,10 +22,6 @@ interface AlertyServiceConfig {
   deploymentEnvironment?: string;
 }
 
-interface AlertyConfig {
-  endpoint: string;
-}
-
 let alertyService: AlertyServiceConfig = {
   dsn: "",
   serviceName: "",
@@ -73,7 +69,11 @@ if (typeof window !== "undefined") {
   };
 }
 
-const setupNodeTracer = (endpoint: string, orgId: string) => {
+const setupNodeTracer = (
+  endpoint: string,
+  orgId: string,
+  resourceId: string,
+) => {
   const provider = new NodeTracerProvider({
     resource: new Resource({
       [SEMRESATTRS_SERVICE_NAME]: alertyService.serviceName,
@@ -86,6 +86,7 @@ const setupNodeTracer = (endpoint: string, orgId: string) => {
     url: new URL("/v1/traces", endpoint).href,
     headers: {
       "X-Alerty-OrganizationId": orgId,
+      "X-Alerty-ResourceId": resourceId,
     },
   });
 
@@ -101,7 +102,11 @@ const setupNodeTracer = (endpoint: string, orgId: string) => {
   return provider.getTracer("alerty-node-tracer");
 };
 
-const setupWebTracer = (endpoint: string, orgId: string) => {
+const setupWebTracer = (
+  endpoint: string,
+  orgId: string,
+  resourceId: string,
+) => {
   const provider = new WebTracerProvider({
     resource: new Resource({
       [SEMRESATTRS_SERVICE_NAME]: alertyService.serviceName,
@@ -114,6 +119,7 @@ const setupWebTracer = (endpoint: string, orgId: string) => {
     url: new URL("/v1/traces", endpoint).href,
     headers: {
       "X-Alerty-OrganizationId": orgId,
+      "X-Alerty-ResourceId": resourceId,
     },
   });
 
@@ -129,7 +135,9 @@ const setupWebTracer = (endpoint: string, orgId: string) => {
   return provider.getTracer("alerty-web-tracer");
 };
 
-const parseDsn = (dsn: string) => {
+const parseDsn = (
+  dsn: string,
+): { orgId: string; ingestHost: string; resourceId: string } => {
   const dsnPattern = /^(https:\/\/)([^@]+)@([^/]+)\/([^/]+)$/;
   const match = dsn.match(dsnPattern);
 
@@ -143,6 +151,10 @@ const parseDsn = (dsn: string) => {
 
   const formattedOrgId = `org_${orgId?.toUpperCase()}`;
 
+  if (!orgId || !ingestHost || !resourceId) {
+    throw new Error("Invalid DSN");
+  }
+
   return {
     orgId: formattedOrgId,
     ingestHost,
@@ -153,16 +165,16 @@ const parseDsn = (dsn: string) => {
 const configure = (config: AlertyServiceConfig) => {
   alertyService = config;
 
-  const { orgId, ingestHost } = parseDsn(config.dsn);
+  const { orgId, ingestHost, resourceId } = parseDsn(config.dsn);
 
   if (typeof window !== "undefined") {
-    return setupWebTracer(ingestHost, orgId);
+    return setupWebTracer(ingestHost, orgId, resourceId);
   } else if (
     typeof process !== "undefined" &&
     process.release &&
     process.release.name === "node"
   ) {
-    return setupNodeTracer(ingestHost, orgId);
+    return setupNodeTracer(ingestHost, orgId, resourceId);
   } else {
     throw new Error("Unsupported environment for Alerty initialization");
   }
