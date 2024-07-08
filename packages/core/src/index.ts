@@ -1,6 +1,9 @@
 import { Span, SpanStatusCode, trace } from "@opentelemetry/api";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
-import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import {
+  Instrumentation,
+  registerInstrumentations,
+} from "@opentelemetry/instrumentation";
 import { Resource } from "@opentelemetry/resources";
 import {
   BatchSpanProcessor,
@@ -17,6 +20,7 @@ import {
 
 interface AlertyServiceConfig {
   dsn: string;
+  instrumentation?: (Instrumentation | Instrumentation[])[];
   serviceName?: string;
   serviceVersion?: string;
   deploymentEnvironment?: string;
@@ -73,6 +77,7 @@ const setupNodeTracer = (
   endpoint: string,
   orgId: string,
   resourceId: string,
+  config: AlertyServiceConfig,
 ) => {
   const provider = new NodeTracerProvider({
     resource: new Resource({
@@ -96,7 +101,7 @@ const setupNodeTracer = (
   provider.register();
 
   registerInstrumentations({
-    instrumentations: [],
+    instrumentations: config.instrumentation,
   });
 
   return provider.getTracer("alerty-node-tracer");
@@ -106,6 +111,7 @@ const setupWebTracer = (
   endpoint: string,
   orgId: string,
   resourceId: string,
+  config: AlertyServiceConfig,
 ) => {
   const provider = new WebTracerProvider({
     resource: new Resource({
@@ -129,7 +135,7 @@ const setupWebTracer = (
   provider.register();
 
   registerInstrumentations({
-    instrumentations: [],
+    instrumentations: config.instrumentation,
   });
 
   return provider.getTracer("alerty-web-tracer");
@@ -168,13 +174,13 @@ const configure = (config: AlertyServiceConfig) => {
   const { orgId, ingestHost, resourceId } = parseDsn(config.dsn);
 
   if (typeof window !== "undefined") {
-    return setupWebTracer(ingestHost, orgId, resourceId);
+    return setupWebTracer(ingestHost, orgId, resourceId, config);
   } else if (
     typeof process !== "undefined" &&
     process.release &&
     process.release.name === "node"
   ) {
-    return setupNodeTracer(ingestHost, orgId, resourceId);
+    return setupNodeTracer(ingestHost, orgId, resourceId, config);
   } else {
     throw new Error("Unsupported environment for Alerty initialization");
   }
