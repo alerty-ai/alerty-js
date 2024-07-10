@@ -33,7 +33,7 @@ To start using Alerty SDK, initialize it in your project:
 import * as Alerty from "@alerty/node";
 
 Alerty.configure({
-  dsn: "__DSN__",
+  dsn: "__YOUR_DSN__",
 });
 ```
 
@@ -41,4 +41,4 @@ Data should be flowing now!
 
 ## License
 
-Alerty SDK is released under the [MIT License](LICENSE).
+Alerty SDK is released under the [MIT License](https://github.com/alerty-ai/alerty-js/blob/main/LICENSE).

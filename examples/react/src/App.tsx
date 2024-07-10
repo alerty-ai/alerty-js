@@ -6,7 +6,7 @@ import "./App.css";
 import * as Alerty from "@alerty/react";
 
 Alerty.configure({
-  dsn: "__DSN__",
+  dsn: "__YOUR_DSN__",
 });
 
 function App() {
