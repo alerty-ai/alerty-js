@@ -11,7 +11,7 @@ Alerty SDK is a powerful monitoring tool designed, built, and priced for the nee
 - **Customizable Alerts:** Set up alerts to notify you when something goes wrong.
 - **Lightweight and Fast:** Designed to be efficient with minimal overhead.
 
-## Usage
+## Getting Started
 
 You can install the Alerty SDK via npm:
 
