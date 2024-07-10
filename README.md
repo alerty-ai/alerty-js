@@ -15,6 +15,7 @@ Alerty SDK is a powerful monitoring tool designed, built, and priced for the nee
 
 For each major JavaScript platform, there is a specific high-level SDK that provides all the tools you need in a single package. Please refer to the README and instructions of those SDKs for more detailed information:
 
+- [`@alerty/vue`](https://github.com/alerty-ai/alerty-js/tree/main/packages/vue): SDK for Vue
 - [`@alerty/node`](https://github.com/alerty-ai/alerty-js/tree/main/packages/node): SDK for Node
 - [`@alerty/react`](https://github.com/alerty-ai/alerty-js/tree/main/packages/react): SDK for React
 - [`@alerty/nextjs`](https://github.com/alerty-ai/alerty-js/tree/main/packages/nextjs): SDK for Next.js
