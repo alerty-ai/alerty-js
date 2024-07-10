@@ -21,6 +21,9 @@ import {
 interface AlertyServiceConfig {
   dsn: string;
   instrumentation?: (Instrumentation | Instrumentation[])[];
+
+  debug?: boolean;
+
   serviceName?: string;
   serviceVersion?: string;
   deploymentEnvironment?: string;
@@ -95,7 +98,11 @@ const setupNodeTracer = (
     },
   });
 
-  provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
+  if (config.debug) {
+    provider.addSpanProcessor(
+      new SimpleSpanProcessor(new ConsoleSpanExporter()),
+    );
+  }
   provider.addSpanProcessor(new BatchSpanProcessor(exporter));
 
   provider.register();
@@ -129,7 +136,11 @@ const setupWebTracer = (
     },
   });
 
-  provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
+  if (config.debug) {
+    provider.addSpanProcessor(
+      new SimpleSpanProcessor(new ConsoleSpanExporter()),
+    );
+  }
   provider.addSpanProcessor(new BatchSpanProcessor(exporter));
 
   provider.register();
@@ -170,6 +181,11 @@ const parseDsn = (
 
 const configure = (config: AlertyServiceConfig) => {
   alertyService = config;
+
+  if (!config.dsn) {
+    console.warn("No DSN provided. Alerty will not be initialized.");
+    return null;
+  }
 
   const { orgId, ingestHost, resourceId } = parseDsn(config.dsn);
 
