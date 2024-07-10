@@ -1,4 +1,4 @@
-# Alerty NextJS SDK
+# Alerty Next.js SDK
 
 [![NPM Version](https://img.shields.io/npm/v/@alerty/nextjs.svg)](https://www.npmjs.com/package/@alerty/nextjs)
 
@@ -25,22 +25,24 @@ yarn add @alerty/nextjs
 
 In a Next.js application, you can initialize Alerty SDK in `app/layout.tsx`:
 
-```javascript
+```typescript
 import * as Alerty from "@alerty/nextjs";
-import App from "next/app";
 
 Alerty.configure({
   dsn: "__DSN__",
 });
 
-class MyApp extends App {
-  // Custom app logic
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+   // ...
 }
-
-export default MyApp;
 ```
 
 Data should be flowing now!
+
 
 ## License
 
