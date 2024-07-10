@@ -1,6 +1,6 @@
-# Alerty React SDK
+# Alerty Vue SDK
 
-[![NPM Version](https://img.shields.io/npm/v/@alerty/react.svg)](https://www.npmjs.com/package/@alerty/react)
+[![NPM Version](https://img.shields.io/npm/v/@alerty/vue.svg)](https://www.npmjs.com/package/@alerty/vue)
 
 Alerty SDK is a powerful monitoring tool designed, built, and priced for the needs of developers and founders. It helps you monitor your applications, track errors, and ensure your software runs smoothly.
 
@@ -16,22 +16,23 @@ Alerty SDK is a powerful monitoring tool designed, built, and priced for the nee
 You can install the Alerty SDK via npm:
 
 ```sh
-npm install @alerty/react
+npm install @alerty/vue
 ```
 
-In a React application, initialize Alerty SDK in your main entry file, typically `index.js` or `App.js`:
+In a Vue application, initialize Alerty SDK in your main entry file, typically `src/index.js`:
 
 ```javascript
-import * as Alerty from "@alerty/react";
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import "./assets/main.css";
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import * as Alerty from "@alerty/vue";
 
 Alerty.configure({
   dsn: "__YOUR_DSN__",
 });
 
-ReactDOM.render(<App />, document.getElementById("root"));
+createApp(App).mount("#app");
 ```
 
 Data should be flowing now!

@@ -29,7 +29,7 @@ In a Next.js application, you can initialize Alerty SDK in `app/layout.tsx`:
 import * as Alerty from "@alerty/nextjs";
 
 Alerty.configure({
-  dsn: "__DSN__",
+  dsn: "__YOUR_DSN__",
 });
 
 export default function RootLayout({
@@ -37,13 +37,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-   // ...
+  // ...
 }
 ```
 
 Data should be flowing now!
 
-
 ## License
 
-Alerty SDK is released under the [MIT License](LICENSE).
+Alerty SDK is released under the [MIT License](https://github.com/alerty-ai/alerty-js/blob/main/LICENSE).

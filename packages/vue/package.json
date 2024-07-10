@@ -1,5 +1,5 @@
 {
-  "name": "@alerty/nextjs",
+  "name": "@alerty/vue",
   "version": "0.0.11",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,19 +13,12 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component"
+    "lint": "eslint . --max-warnings 0"
   },
   "devDependencies": {
     "@alerty/eslint-config": "*",
     "@alerty/typescript-config": "*",
-    "@turbo/gen": "^1.12.4",
-    "@types/eslint": "^8.56.5",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.61",
-    "@types/react-dom": "^18.2.19",
     "eslint": "^8.57.0",
-    "react": "^18.2.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {

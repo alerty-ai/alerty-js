@@ -7,7 +7,7 @@ import server from "./server";
 import * as Alerty from "@alerty/node";
 
 Alerty.configure({
-  dsn: "__DSN__",
+  dsn: "__YOUR_DSN__",
 });
 
 const SERVER_START_MSG =
