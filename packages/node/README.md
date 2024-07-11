@@ -29,6 +29,57 @@ Alerty.configure({
 });
 ```
 
+### Database Monitoring
+
+If you also want to monitor your database, Alerty integrates with the following ORM libraries:
+
+#### Prisma
+
+First, in the generator block of your `schema.prisma` file, enable the `tracing` feature flag:
+
+```javascript
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["tracing"]
+}
+```
+
+Install the instrumentation dependency:
+
+```sh
+npm install @prisma/instrumentation@latest --save
+```
+
+Add `PrismaInstrumentation` to the `instrumentations` option and capture the `error` events:
+
+```javascript
+import { PrismaInstrumentation } from '@prisma/instrumentation'
+
+// ...
+
+Alerty.configure({
+  dsn: "__YOUR_DSN__",
+  instrumentations: [new PrismaInstrumentation()],
+});
+
+export const prisma = new PrismaClient({
+  log: [
+    {
+      emit: "event",
+      level: "error"
+    }
+  ]
+});
+
+prisma.$on("error", (e) => {
+  Alerty.captureError(
+    new PrismaClientUnknownRequestError(e.message, {
+      clientVersion: Prisma.prismaVersion.client,
+    }),
+  );
+});
+```
+
 Data should be flowing now!
 
 ## License
