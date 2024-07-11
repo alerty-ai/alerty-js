@@ -20,7 +20,7 @@ import {
 
 interface AlertyServiceConfig {
   dsn: string;
-  instrumentation?: (Instrumentation | Instrumentation[])[];
+  instrumentations?: (Instrumentation | Instrumentation[])[];
 
   debug?: boolean;
 
@@ -108,7 +108,7 @@ const setupNodeTracer = (
   provider.register();
 
   registerInstrumentations({
-    instrumentations: config.instrumentation,
+    instrumentations: config.instrumentations,
   });
 
   return provider.getTracer("alerty-node-tracer");
@@ -146,7 +146,7 @@ const setupWebTracer = (
   provider.register();
 
   registerInstrumentations({
-    instrumentations: config.instrumentation,
+    instrumentations: config.instrumentations,
   });
 
   return provider.getTracer("alerty-web-tracer");
