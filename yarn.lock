@@ -2682,6 +2682,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"alerty-example-vue@workspace:examples/vue":
+  version: 0.0.0-use.local
+  resolution: "alerty-example-vue@workspace:examples/vue"
+  dependencies:
+    "@alerty/vue": "workspace:^"
+    "@tsconfig/node20": "npm:^20.1.4"
+    "@types/node": "npm:^20.14.5"
+    "@vitejs/plugin-vue": "npm:^5.0.5"
+    "@vue/tsconfig": "npm:^0.5.1"
+    npm-run-all2: "npm:^6.2.0"
+    typescript: "npm:~5.4.0"
+    vite: "npm:^5.3.1"
+    vue: "npm:^3.4.29"
+    vue-tsc: "npm:^2.0.21"
+  languageName: unknown
+  linkType: soft
+
 "alerty-js@workspace:.":
   version: 0.0.0-use.local
   resolution: "alerty-js@workspace:."
@@ -9663,23 +9680,6 @@ __metadata:
   checksum: 10c0/d9d7ac45f2f9b69b3c2f1cabf2d70cad4e829f7daebc2d2896b5e2e58074fee002d870691cfeb12af891ce1bedac2318269dffc4c581319823ed5e5e9173cd03
   languageName: node
   linkType: hard
-
-"vue@workspace:examples/vue":
-  version: 0.0.0-use.local
-  resolution: "vue@workspace:examples/vue"
-  dependencies:
-    "@alerty/vue": "workspace:^"
-    "@tsconfig/node20": "npm:^20.1.4"
-    "@types/node": "npm:^20.14.5"
-    "@vitejs/plugin-vue": "npm:^5.0.5"
-    "@vue/tsconfig": "npm:^0.5.1"
-    npm-run-all2: "npm:^6.2.0"
-    typescript: "npm:~5.4.0"
-    vite: "npm:^5.3.1"
-    vue: "npm:^3.4.29"
-    vue-tsc: "npm:^2.0.21"
-  languageName: unknown
-  linkType: soft
 
 "wcwidth@npm:^1.0.1":
   version: 1.0.1

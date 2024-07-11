@@ -180,25 +180,30 @@ const parseDsn = (
 };
 
 const configure = (config: AlertyServiceConfig) => {
-  alertyService = config;
+  try {
+    alertyService = config;
 
-  if (!config.dsn) {
-    console.warn("No DSN provided. Alerty will not be initialized.");
-    return null;
-  }
+    if (!config.dsn) {
+      throw Error("No DSN provided. Alerty will not be initialized.");
+    }
 
-  const { orgId, ingestHost, resourceId } = parseDsn(config.dsn);
+    const { orgId, ingestHost, resourceId } = parseDsn(config.dsn);
 
-  if (typeof window !== "undefined") {
-    return setupWebTracer(ingestHost, orgId, resourceId, config);
-  } else if (
-    typeof process !== "undefined" &&
-    process.release &&
-    process.release.name === "node"
-  ) {
-    return setupNodeTracer(ingestHost, orgId, resourceId, config);
-  } else {
-    throw new Error("Unsupported environment for Alerty initialization");
+    if (typeof window !== "undefined") {
+      return setupWebTracer(ingestHost, orgId, resourceId, config);
+    } else if (
+      typeof process !== "undefined" &&
+      process.release &&
+      process.release.name === "node"
+    ) {
+      return setupNodeTracer(ingestHost, orgId, resourceId, config);
+    } else {
+      throw new Error("Unsupported environment for Alerty initialization");
+    }
+  } catch (error) {
+    if (config.debug) {
+      console.error(error);
+    }
   }
 };
 
