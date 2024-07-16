@@ -5,7 +5,7 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@alerty/core@npm:0.0.17, @alerty/core@workspace:packages/core":
+"@alerty/core@npm:0.0.18, @alerty/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@alerty/core@workspace:packages/core"
   dependencies:
@@ -48,7 +48,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alerty/nextjs@workspace:packages/nextjs"
   dependencies:
-    "@alerty/core": "npm:0.0.17"
+    "@alerty/core": "npm:0.0.18"
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
     "@turbo/gen": "npm:^1.12.4"
@@ -59,6 +59,8 @@ __metadata:
     eslint: "npm:^8.57.0"
     react: "npm:^18.2.0"
     typescript: "npm:^5.3.3"
+  peerDependencies:
+    next: ^14.0.0
   languageName: unknown
   linkType: soft
 
@@ -66,7 +68,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alerty/node@workspace:packages/node"
   dependencies:
-    "@alerty/core": "npm:0.0.17"
+    "@alerty/core": "npm:0.0.18"
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
     "@turbo/gen": "npm:^1.12.4"
@@ -84,7 +86,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alerty/react@workspace:packages/react"
   dependencies:
-    "@alerty/core": "npm:0.0.17"
+    "@alerty/core": "npm:0.0.18"
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
     "@turbo/gen": "npm:^1.12.4"
@@ -108,7 +110,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@alerty/vue@workspace:packages/vue"
   dependencies:
-    "@alerty/core": "npm:0.0.17"
+    "@alerty/core": "npm:0.0.18"
     "@alerty/eslint-config": "npm:*"
     "@alerty/typescript-config": "npm:*"
     eslint: "npm:^8.57.0"
