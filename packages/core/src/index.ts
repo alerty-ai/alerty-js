@@ -108,6 +108,7 @@ const setupNodeTracer = (
   provider.register();
 
   registerInstrumentations({
+    tracerProvider: provider,
     instrumentations: config.instrumentations,
   });
 
@@ -146,6 +147,7 @@ const setupWebTracer = (
   provider.register();
 
   registerInstrumentations({
+    tracerProvider: provider,
     instrumentations: config.instrumentations,
   });
 
