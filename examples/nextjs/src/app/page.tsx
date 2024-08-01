@@ -3,7 +3,7 @@ import Image from "next/image";
 import * as Alerty from "@alerty/nextjs";
 
 Alerty.configure({
-  dsn: "https://01hxsyxpc7yqbz4n3dq80kp84v@lumos-ingest-1nru.staging.zeetco.app/53370ddd-7298-4d41-968f-c8bfcea6bafe",
+  dsn: "__DSN__",
   debug: true,
 });
 
