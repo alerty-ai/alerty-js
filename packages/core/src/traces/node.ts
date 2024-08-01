@@ -1,10 +1,7 @@
 import { AlertyConfig } from "../config";
 import { isNodeEnvironment } from "../utils";
-import {
-  captureError,
-  registerTraceProvider,
-  TraceProviderKind,
-} from "./utils";
+import { captureError } from "./captureError";
+import { registerTraceProvider, TraceProviderKind } from "./utils";
 
 export const registerNodeTracer = (config: AlertyConfig) => {
   if (!isNodeEnvironment()) {

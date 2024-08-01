@@ -10,6 +10,7 @@ import {
   parseDsn,
 } from "../utils";
 import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
+import { ResourceAttributes } from "@opentelemetry/resources";
 
 export enum AlertyMeterKind {
   WebVitals = "web-vitals",
@@ -35,8 +36,9 @@ const makeMeterName = (kind: AlertyMeterKind) => {
 export const registerMeterProvider = (
   kind: AlertyMeterKind,
   config: AlertyConfig,
+  attributes?: ResourceAttributes,
 ) => {
-  const resource = makeResource(config);
+  const resource = makeResource(config, attributes);
   const metricExporter = makeMetricExporter(config);
 
   const meterProvider = new MeterProvider({
@@ -44,7 +46,7 @@ export const registerMeterProvider = (
     readers: [
       new PeriodicExportingMetricReader({
         exporter: metricExporter,
-        exportIntervalMillis: 1_000,
+        exportIntervalMillis: 10_000,
       }),
     ],
   });

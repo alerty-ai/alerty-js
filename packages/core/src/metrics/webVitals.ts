@@ -7,44 +7,66 @@ export const registerWebVitals = async (config: AlertyConfig) => {
     return;
   }
 
-  const { onCLS, onLCP, onFCP, onTTFB } = await import("web-vitals");
+  if (config.debug) {
+    console.info("Registering Web Vitals metrics");
+  }
+
+  const { onCLS, onLCP, onFCP, onTTFB, onINP } = await import("web-vitals");
 
   const meter = registerMeterProvider(AlertyMeterKind.WebVitals, config);
 
-  const clsMetric = meter.createObservableGauge("web_vital_cls", {
+  const clsMetric = meter.createGauge("web_vital_cls", {
     description: "Cumulative Layout Shift",
   });
-  const lcpMetric = meter.createObservableGauge("web_vital_lcp", {
+
+  const lcpMetric = meter.createGauge("web_vital_lcp", {
     description: "Largest Contentful Paint",
+    unit: "milliseconds",
   });
-  const fcpMetric = meter.createObservableGauge("web_vital_fcp", {
+
+  const fcpMetric = meter.createGauge("web_vital_fcp", {
     description: "First Contentful Paint",
+    unit: "milliseconds",
   });
-  const ttfbMetric = meter.createObservableGauge("web_vital_ttfb", {
+
+  const ttfbMetric = meter.createGauge("web_vital_ttfb", {
     description: "Time to First Byte",
+    unit: "milliseconds",
   });
 
-  clsMetric.addCallback((observableResult) => {
-    onCLS((metric) => {
-      observableResult.observe(metric.value);
-    });
+  const inpMetric = meter.createGauge("web_vital_inp", {
+    description: "Input Delay",
+    unit: "milliseconds",
   });
 
-  lcpMetric.addCallback((observableResult) => {
-    onLCP((metric) => {
-      observableResult.observe(metric.value);
-    });
+  onCLS((metric) => {
+    clsMetric.record(metric.value);
+    if (config.debug) {
+      console.info(metric);
+    }
   });
-
-  fcpMetric.addCallback((observableResult) => {
-    onFCP((metric) => {
-      observableResult.observe(metric.value);
-    });
+  onLCP((metric) => {
+    lcpMetric.record(metric.value);
+    if (config.debug) {
+      console.info(metric);
+    }
   });
-
-  ttfbMetric.addCallback((observableResult) => {
-    onTTFB((metric) => {
-      observableResult.observe(metric.value);
-    });
+  onFCP((metric) => {
+    fcpMetric.record(metric.value);
+    if (config.debug) {
+      console.info(metric);
+    }
+  });
+  onTTFB((metric) => {
+    ttfbMetric.record(metric.value);
+    if (config.debug) {
+      console.info(metric);
+    }
+  });
+  onINP((metric) => {
+    inpMetric.record(metric.value);
+    if (config.debug) {
+      console.info(metric);
+    }
   });
 };
