@@ -3,7 +3,8 @@ import Image from "next/image";
 import * as Alerty from "@alerty/nextjs";
 
 Alerty.configure({
-  dsn: "https://example@test.ingest.alerty.ai/fa25c056-d8a5-41ab-9de3-06048ef0299c",
+  dsn: "__DSN__",
+  debug: true,
 });
 
 export default function Home() {

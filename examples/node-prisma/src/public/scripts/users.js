@@ -105,7 +105,7 @@ function submitEdit(ele) {
   var emailInput = userEle.getElementsByClassName("email-edit-input")[0];
   var id = ele.getAttribute("data-user-id");
   var created = ele.getAttribute("data-user-created");
-  console.log(ele, created);
+  console.info(ele, created);
   var data = {
     user: {
       id: Number(id),
