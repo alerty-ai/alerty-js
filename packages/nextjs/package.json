@@ -1,6 +1,6 @@
 {
   "name": "@alerty/nextjs",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -33,7 +33,7 @@
     "next": "^14.0.0"
   },
   "dependencies": {
-    "@alerty/core": "0.0.18"
+    "@alerty/core": "0.0.19"
   },
   "publishConfig": {
     "access": "public"
