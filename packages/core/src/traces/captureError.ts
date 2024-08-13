@@ -1,6 +1,6 @@
 import { Span, SpanStatusCode, trace } from "@opentelemetry/api";
 
-export const captureError = (error: Error | string): void => {
+export const captureError = (error: any): void => {
   const tracer = trace.getTracer("default");
   const span: Span = tracer.startSpan("error");
 
@@ -8,7 +8,9 @@ export const captureError = (error: Error | string): void => {
     error = new Error(error);
   }
 
-  span.recordException(error);
-  span.setStatus({ code: SpanStatusCode.ERROR, message: error.message });
-  span.end();
+  if (error instanceof Error) {
+    span.recordException(error);
+    span.setStatus({ code: SpanStatusCode.ERROR, message: error.message });
+    span.end();
+  }
 };

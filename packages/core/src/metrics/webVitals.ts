@@ -40,31 +40,31 @@ export const registerWebVitals = async (config: AlertyConfig) => {
   });
 
   onCLS((metric) => {
-    clsMetric.record(metric.value);
+    clsMetric.record(metric.value, { path: window.location.pathname });
     if (config.debug) {
       console.info(metric);
     }
   });
   onLCP((metric) => {
-    lcpMetric.record(metric.value);
+    lcpMetric.record(metric.value, { path: window.location.pathname });
     if (config.debug) {
       console.info(metric);
     }
   });
   onFCP((metric) => {
-    fcpMetric.record(metric.value);
+    fcpMetric.record(metric.value, { path: window.location.pathname });
     if (config.debug) {
       console.info(metric);
     }
   });
   onTTFB((metric) => {
-    ttfbMetric.record(metric.value);
+    ttfbMetric.record(metric.value, { path: window.location.pathname });
     if (config.debug) {
       console.info(metric);
     }
   });
   onINP((metric) => {
-    inpMetric.record(metric.value);
+    inpMetric.record(metric.value, { path: window.location.pathname });
     if (config.debug) {
       console.info(metric);
     }

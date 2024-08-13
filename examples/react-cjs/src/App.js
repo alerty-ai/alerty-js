@@ -1,11 +1,10 @@
 import logo from './logo.svg';
-import './App.css';
-
-import * as Alerty from "@alerty/react";
 import { useEffect } from 'react';
+import './App.css';
+import * as Alerty from "@alerty/react";
 
 Alerty.configure({
-  dsn: "__DSN__",
+  dsn: "https://01hxsyxpc7yqbz4n3dq80kp84v@localhost:4318/0a37eed4-fd20-42de-9975-5d09a303234a",
   debug: true,
 });
 

@@ -1,6 +1,10 @@
-import { isBrowserEnvironment } from "../utils";
+import { isBrowserEnvironment, parseDsn } from "../utils";
 import { AlertyConfig } from "../config";
 import { AlertyMeterKind, registerMeterProvider } from "./utils";
+
+const isIngestHost = (uri: string, dsn: string) => {
+  return uri.includes(parseDsn(dsn).ingestHost);
+};
 
 export const registerNetworkMetrics = (config: AlertyConfig) => {
   if (!isBrowserEnvironment() || !window.performance) {
@@ -37,8 +41,16 @@ export const registerNetworkMetrics = (config: AlertyConfig) => {
           ("transferSize" in entry ? (entry.transferSize as number) : 0) ||
           ("encodedBodySize" in entry ? (entry.encodedBodySize as number) : 0);
 
-        timeSpentMetric.record(timeSpent, { uri });
-        sizeMetric.record(size, { uri });
+        if (!isIngestHost(uri, config.dsn)) {
+          timeSpentMetric.record(timeSpent, {
+            uri,
+            route: window.location.pathname,
+          });
+        }
+
+        if (size !== 0) {
+          sizeMetric.record(size, { uri, route: window.location.pathname });
+        }
 
         if (config.debug) {
           console.info({ uri, timeSpent, size });

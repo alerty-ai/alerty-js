@@ -1,8 +1,9 @@
 import { AlertyConfig } from "../config";
-import { registerBrowserTracer } from "./browser";
-import { registerNodeTracer } from "./node";
+import { isBrowserEnvironment } from "../utils";
 
-export const registerTraces = (config: AlertyConfig) => {
-  registerNodeTracer(config);
-  registerBrowserTracer(config);
+export const registerTraces = async (config: AlertyConfig) => {
+  if (isBrowserEnvironment()) {
+    const { registerBrowserTracer } = await import("./browser.js");
+    registerBrowserTracer(config);
+  }
 };

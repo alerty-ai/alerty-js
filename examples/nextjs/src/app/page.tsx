@@ -1,9 +1,10 @@
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
 import * as Alerty from "@alerty/nextjs";
 
 Alerty.configure({
-  dsn: "__DSN__",
+  dsn: "https://01hxsyxpc7yqbz4n3dq80kp84v@localhost:4318/0a37eed4-fd20-42de-9975-5d09a303234a",
   debug: true,
 });
 
