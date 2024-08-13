@@ -16,7 +16,7 @@ export const parseDsn = (dsn: string): AlertyDsn => {
   }
 
   const orgId = match[2];
-  const ingestHost = `http://${match[3]}`;
+  const ingestHost = `https://${match[3]}`;
   const resourceId = match[4];
 
   const formattedOrgId = `org_${orgId?.toUpperCase()}`;
