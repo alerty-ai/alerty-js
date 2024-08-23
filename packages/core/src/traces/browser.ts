@@ -1,4 +1,5 @@
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import { getWebAutoInstrumentations } from "@opentelemetry/auto-instrumentations-web";
 import { AlertyConfig } from "../config";
 import { makeResource } from "../resource";
 import { isBrowserEnvironment } from "../utils";
@@ -34,7 +35,16 @@ const registerTraceProvider = (
 
   registerInstrumentations({
     tracerProvider: provider,
-    instrumentations: config.instrumentations,
+    instrumentations: [
+      ...getWebAutoInstrumentations(
+        {
+          "@opentelemetry/instrumentation-user-interaction": {
+            eventNames: ["click"],
+          }
+        }
+      ),
+      ...(config.instrumentations ?? [])
+    ],
   });
 
   return provider.getTracer(makeTracerName(kind));
