@@ -10,6 +10,7 @@ import { isNodeEnvironment } from "../utils";
 import { captureError } from "./captureError";
 import { makeTraceExporter, makeTracerName, TraceProviderKind } from "./utils";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node";
 
 export const registerNodeTracer = (config: AlertyConfig) => {
   if (!isNodeEnvironment()) {
@@ -54,7 +55,10 @@ const registerTraceProvider = (
 
   registerInstrumentations({
     tracerProvider: provider,
-    instrumentations: config.instrumentations,
+    instrumentations: [
+      ...getNodeAutoInstrumentations(),
+      ...(config.instrumentations ?? [])
+    ],
   });
 
   return provider.getTracer(makeTracerName(kind));
