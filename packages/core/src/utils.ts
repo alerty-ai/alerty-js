@@ -39,3 +39,17 @@ export const isNodeEnvironment = () => {
     process.release.name === "node"
   );
 };
+
+export const getDebugId = (err: Error): string | undefined => {
+  if (isBrowserEnvironment()) {
+    const alertyDebugIds = (window as any)._alertyDebugIds;
+    return alertyDebugIds ? alertyDebugIds[err.stack ?? ""] : "";
+  }
+
+  if (typeof global !== "undefined") {
+    const alertyDebugIds = (global as any)._alertyDebugIds;
+    return alertyDebugIds ? alertyDebugIds[err.stack ?? ""] : "";
+  }
+
+  return undefined;
+};
